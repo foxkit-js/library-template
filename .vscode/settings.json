@@ -1,0 +1,12 @@
+{
+  "eslint.experimental.useFlatConfig": true,
+  "editor.formatOnSave": true,
+  "[javascript][typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[json][jsonc][yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
+}
