@@ -1,6 +1,9 @@
 import fs from "fs/promises";
 import * as esbuild from "esbuild";
 
+/**
+ * Base config for esbuild
+ */
 const config = {
   /**
    * Entrypoints for your package.

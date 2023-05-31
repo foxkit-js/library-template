@@ -1,8 +1,14 @@
 # Foxkit Library Template
 
-**WIP**
+This repository is a template for dual-published npm packages with [esbuild] and full [TypeScript] support.
 
-This repository is currently a work in progress, documentation will be added here in the future.
+## Getting Started
+
+First make sure you have a recent version of Node.js (see [Releases](https://nodejs.dev/en/about/releases/)) and [pnpm] installed.
+
+Create your repository using the button above. Once cloned move into the project directory and run `pnpm install`. You can now start development in "src/index.ts" or read the rest of this documentation to get more familiar with the build/publishing process and provided pre-configured tools.
+
+Remember to replace README.md and adjust (at least the name) in the LICENSE file before publishing!
 
 ## Configuring Builds
 
@@ -71,6 +77,7 @@ git push --tags
 
 [esbuild]: https://esbuild.github.io/
 [TypeScript]: https://www.typescriptlang.org/
+[pnpm]: https://pnpm.io/
 [clean-publish]: https://github.com/shashkovdanil/clean-publish#publish-config
 [ESLint]: https://eslint.org/
 [eslint-config-foxkit]: https://github.com/foxkit-js/eslint-config-foxkit
