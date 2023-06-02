@@ -1,0 +1,100 @@
+name: Test
+
+on:
+  ## This workflow runs on every push to main (including merges)
+  push:
+    branches: [main]
+  ## This workflow also runs for every opened PR or push to PR branch
+  pull_request:
+
+jobs:
+  ## First job that runs is linting. This ensures the syntax is valid in the
+  ## first place. Feel free to reduce to `pnpm lint` if your ruleset is set up
+  ## to where warnings are only stylistic preferences and not vital to ensure
+  ## code validity.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install pnpm v8
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Lint
+        run: pnpm lint:strict
+
+  ## This job runs after lint and runs prettier in check mode.
+  ## Feel free to remove this if you're not strict with codestyle
+  format:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install pnpm v8
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Check Formatting
+        run: pnpm format:check
+
+  ## This job runs after lint and runs TypeScript typechecks
+  types:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install pnpm v8
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Typecheck
+        run: pnpm typecheck
+
+  ## Example for testing with matrix strategy to test current node versions
+  ## (previous LTS, LTS and Current)
+#  test:
+#    needs: types
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        node-version: [16.x, 18.x, 20.x]
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#      - name: Install pnpm v8
+#        uses: pnpm/action-setup@v2
+#        with:
+#          version: 8
+#      - name: Use Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#          cache: pnpm
+#      - name: Install dependencies
+#        run: pnpm install --frozen-lockfile --ignore-scripts
+#      - name: Run Tests
+#        run: pnpm test
