@@ -35,7 +35,11 @@ const config = {
    * Enable this if you prefer optimizing for package size and don't
    * care about readable code in packages.
    */
-  minify: false
+  minify: false,
+  /**
+   * This target should match the one set in ESLint and TypeScript
+   */
+  target: "es2022"
 };
 
 async function build() {
