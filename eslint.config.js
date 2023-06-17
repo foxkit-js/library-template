@@ -1,5 +1,5 @@
-import foxkit from "eslint-config-foxkit";
-import foxkitTS from "eslint-config-foxkit/typescript";
+import foxkit from "eslint-config-foxkit/configs/base.js";
+import foxkitTS from "eslint-config-foxkit/configs/typescript.js";
 import prettier from "eslint-config-prettier";
 
 const __dirname = new URL(".", import.meta.url).pathname.slice(0, -1);
