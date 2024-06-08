@@ -45,6 +45,10 @@ rm .git/hooks/pre-commit
 
 Installing the editor integration for your code editor, such as the [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), is strongly recommended. You can also manually call prettier for the entire codebase with the `pnpm format` script or check for formatting errors with the `pnpm format:check` script.
 
+### uvu
+
+This repository comes with the test runner [uvu] set up to run from the `"tests"` directory. You can add any testing utilities in `"tests/utils"` (the `utils` directory is ignored by uvu). Test files fully support TypeScript thanks to `esbuild-register`. To run your tests simply run the command `pnpm test`.
+
 ## Publishing
 
 - You should commit (or stash) any changes and ran `pnpm lint` and any tests (if you added any) before publishing!
@@ -86,3 +90,4 @@ git push --tags
 [Prettier]: https://prettier.io/
 [simple-git-hooks]: https://github.com/toplenboren/simple-git-hooks
 [nano-staged]: https://github.com/usmanyunusov/nano-staged
+[uvu]: https://github.com/lukeed/uvu

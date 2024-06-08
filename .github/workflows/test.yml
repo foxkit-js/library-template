@@ -74,27 +74,26 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-  ## Example for testing with matrix strategy to test current node versions
-  ## (previous LTS, LTS and Current)
-#  test:
-#    needs: types
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        node-version: [18.x, 20.x, 22.x]
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#      - name: Install pnpm v9
-#        uses: pnpm/action-setup@v4
-#        with:
-#          version: 9
-#      - name: Use Node.js ${{ matrix.node-version }}
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: ${{ matrix.node-version }}
-#          cache: pnpm
-#      - name: Install dependencies
-#        run: pnpm install --frozen-lockfile --ignore-scripts
-#      - name: Run Tests
-#        run: pnpm test
+  test:
+    needs: types
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # it is recommended to test at least previous LTS, LTS and Latest node
+        node-version: [18.x, 20.x, 22.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm v9
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Run Tests
+        run: pnpm test

@@ -13,7 +13,7 @@ const config = {
   entryPoints: ["src/index.ts"],
   /**
    * Directory in which your build is created.
-   * Should match values in .prettierignore, esbuild.config.js and package.json
+   * Should match values in .prettierignore, eslint.config.js and package.json
    */
   outdir: "dist",
   /**
