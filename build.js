@@ -2,7 +2,9 @@ import fs from "fs/promises";
 import * as esbuild from "esbuild";
 
 /**
- * Base config for esbuild
+ * Build config for esbuild
+ * @typedef {import("esbuild").BuildOptions} BuildOptions
+ * @type {BuildOptions}
  */
 const config = {
   /**
