@@ -12,17 +12,15 @@ Remember to replace README.md and adjust (at least the name) in the LICENSE file
 
 ## Configuring Builds
 
-The build process contains three steps: A build script using [esbuild], d.ts files through `tsc` ([TypeScript]) and `clear-package-json` ([clean-publish]).
+The build process contains three steps: A build script using [esbuild], d.ts files through `tsc` ([TypeScript]).
 
 The build script is a simple js file which can be freely adjusted. The provided configurations are for dual-publishing as native ES Modules with `.cjs` as fallback for older systems, while [TypeScript] takes care of providing types in d.ts files.
 
-### Configuring clear-package-json
+### Configuring package.json publishConfig
 
-`clear-package-json` by [clean-publish] is a simple tool to remove development configs (such as `"scripts"` and our git hook configs) from your package.json file, which are not needed for using the package as a dependency. It is vital that you properly separate your dependencies and development-only dependencies for this to work as the `"devDependencies"` key is removed!
+The build script uses the `"publishConfig"` to override and add keys in your production package.json file. This is achieved with a simple `Object.assign` call, so you can nest another `"publishConfig"` object inside to configure `npm publish` from there (note that this is slightly different from how pnpm handles this!). See the [pnpm docs](https://pnpm.io/package_json#publishconfig) for detailed information on available parameters that can be overriden.
 
-The `"publishConfig"` key can be used to override and add keys in your production package.json file. See the [pnpm docs](https://pnpm.io/package_json#publishconfig) for detailed information. In general `"main"` should be your cjs build, `"module"` your js (ESM) build and `"types"` should be added appropriately.
-
-Note that when using the `"exports"` key you should add `"types"` as the first key on every export to make sure [TypeScript] can find them. If you are exporting a file in a subdirectory of `./src` you may want to use the `"typesVersion"` key as a workaround for linking to the d.ts file as a workaround.
+When not using the `"exports"` key, in general `"main"` should be your cjs build, `"module"` your js (ESM) build and `"types"` should be added appropriately. Note that when using the `"exports"` key you should add `"types"` as the first key on every export to make sure [TypeScript] can find them. If you are exporting a file in a subdirectory of `./src` you may want to use the `"typesVersion"` key as a workaround for linking to the d.ts file as a workaround.
 
 ## Tools
 
@@ -82,7 +80,6 @@ git push --tags
 [esbuild]: https://esbuild.github.io/
 [TypeScript]: https://www.typescriptlang.org/
 [pnpm]: https://pnpm.io/
-[clean-publish]: https://github.com/shashkovdanil/clean-publish#publish-config
 [ESLint]: https://eslint.org/
 [eslint-config-foxkit]: https://github.com/foxkit-js/eslint-config-foxkit
 [eslint-config-prettier]: https://github.com/prettier/eslint-config-prettier
