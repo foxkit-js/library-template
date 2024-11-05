@@ -51,6 +51,7 @@
     "types": "index.d.ts"
   },
   "devDependencies": {
+    "@types/node": "22",
     "esbuild": "^0.24.0",
     "esbuild-register": "^3.6.0",
     "eslint": "^8.57.0",
