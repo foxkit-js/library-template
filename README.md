@@ -30,6 +30,8 @@ When not using the `"exports"` key, in general `"main"` should be your cjs build
 
 Run the `pnpm lint` or `pnpm lint:strict` scripts or install the editor integration for your code editor, such as the [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) to run ESLint.
 
+Note: Some plugins may not yet be fully compatible with ESLint V9 and/or Flat Configs. These may require rewriting the config to the legacy system and/or downgrading `eslint` and `@eslint/js` to `v8.57.x`.
+
 ### Prettier
 
 [Prettier] is an automatic code-formatter and is configured to auto-format all appropriate file types when creating a commit with git through [simple-git-hooks] and [nano-staged].
