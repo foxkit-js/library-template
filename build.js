@@ -85,7 +85,7 @@ async function handlePkgJson() {
 }
 
 /**
- * Statically copy files to the outdir
+ * Statically copy files or directories to the outdir
  * @typedef {string | [string, string]} File
  * @typedef {File[]} Files
  * @param {Files} files Array of files to copy to outdir. Use nested array to change filename such as ["foo.build.json", "foo.json"].
@@ -97,7 +97,7 @@ async function copyFiles(files) {
       const [fileIn, fileOut] = Array.isArray(file) ? file : [file, file];
       const outPath = path.join(config.outdir, fileOut);
       console.log(`Copying ${fileIn} to ${outPath}`);
-      return fs.cp(fileIn, outPath, { force: true });
+      return fs.cp(fileIn, outPath, { force: true, recursive: true });
     })
   );
 
