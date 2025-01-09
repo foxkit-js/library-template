@@ -63,14 +63,19 @@ async function handlePkgJson() {
   }
 
   console.log("Processing package.json");
-  const { publishConfig, "clean-publish": cleanPublish, ...pkgRest } = pkg;
-  const pkgProcessed = Object.assign({}, pkgRest, publishConfig);
-
-  // handle removing fields
-  const removeFields = ["devDependencies", ...cleanPublish.fields];
-  for (const field of removeFields) {
-    delete pkgProcessed[field];
-  }
+  const { removeFields, ...publishConfig } = pkg.publishConfig || {};
+  const removedFields = new Set(
+    ["devDependencies", "publishConfig"].concat(
+      Array.isArray(removeFields) ? removeFields : []
+    )
+  );
+  const pkgProcessed = Object.assign(
+    {},
+    Object.fromEntries(
+      Object.entries(pkg).filter(([key]) => !removedFields.has(key))
+    ),
+    publishConfig || {}
+  );
 
   return fs.writeFile(
     path.join(config.outdir, "package.json"),

@@ -18,9 +18,11 @@ The build script is a simple js file which can be freely adjusted. The provided 
 
 ### Configuring package.json publishConfig
 
-The build script uses the `"publishConfig"` to override and add keys in your production package.json file. This is achieved with a simple `Object.assign` call, so you can nest another `"publishConfig"` object inside to configure `npm publish` from there (note that this is slightly different from how pnpm handles this!). See the [pnpm docs](https://pnpm.io/package_json#publishconfig) for detailed information on available parameters that can be overriden.
+The build script uses the `"publishConfig"` to override and add keys in your production package.json file. This is achieved with a simple `Object.assign` call, so you can nest another `"publishConfig"` object inside to configure `npm publish` from there (note that this is slightly different from how pnpm handles this!).
 
-When not using the `"exports"` key, in general `"main"` should be your cjs build, `"module"` your js (ESM) build and `"types"` should be added appropriately. Note that when using the `"exports"` key you should add `"types"` as the first key on every export to make sure [TypeScript] can find them. If you are exporting a file in a subdirectory of `./src` you may want to use the `"typesVersion"` key as a workaround for linking to the d.ts file as a workaround.
+You can also remove keys without replacing them by listing them in an array in `publishConfig.removeFields`. Note that `"devDependencies"` and `"publishConfig"` are always removed, even with no array provided. Replacements happen after deletion, so you can still replace a removed property by listing it in `"publishConfig"`.
+
+In general when not using the `"exports"` key, in general `"main"` should be your cjs build, `"module"` your js (ESM) build and `"types"` should be added appropriately. Note that when using the `"exports"` key you should add `"types"` as the first key on every export to make sure [TypeScript] can find them. If you are exporting a file in a subdirectory of `./src` you may want to use the `"typesVersion"` key as a workaround for linking to the d.ts file as a workaround.
 
 ## Tools
 
