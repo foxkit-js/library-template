@@ -1,4 +1,4 @@
-import foxkit from "eslint-config-foxkit/configs/base.js";
+import foxkit from "eslint-config-foxkit/flat.js";
 import prettier from "eslint-config-prettier";
 
 const __dirname = new URL(".", import.meta.url).pathname.slice(0, -1);
