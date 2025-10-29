@@ -17,14 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm v9
+      - name: Install pnpm v10
         uses: pnpm/action-setup@v4
         with:
-          version: 9
-      - name: Install Node.js v22
+          version: 10
+      - name: Install Node.js v24
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
@@ -39,14 +39,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm v9
+      - name: Install pnpm v10
         uses: pnpm/action-setup@v4
         with:
-          version: 9
-      - name: Install Node.js v22
+          version: 10
+      - name: Install Node.js v24
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
@@ -60,14 +60,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm v9
+      - name: Install pnpm v10
         uses: pnpm/action-setup@v4
         with:
-          version: 9
-      - name: Install Node.js v22
+          version: 10
+      - name: Install Node.js v24
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
@@ -80,14 +80,14 @@ jobs:
     strategy:
       matrix:
         # it is recommended to test at least previous LTS, LTS and Latest node
-        node-version: [20.x, 22.x, 23.x]
+        node-version: [22.x, 24.x, 25.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm v9
+      - name: Install pnpm v10
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
